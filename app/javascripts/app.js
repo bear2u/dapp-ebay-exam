@@ -10,7 +10,8 @@ var EcommerceStore = contract(ecommerce_store_artifacts);
 const ipfsAPI = require("ipfs-api");
 const ethUtil = require("ethereumjs-util");
 
-const ipfs = ipfsAPI({ host: "localhost", port: "5001", protocol: "http" });
+const ipfs = ipfsAPI('localhost', '5001', {protocol: 'http'}); //새 방식
+//ipfsAPI({ host: "localhost", port: "5001", protocol: "http" }); //옛날 방식임
 // const ipfs = ipfsAPI("/ip4/127.0.0.1/tcp/5001");
 
 window.App = {
@@ -68,11 +69,11 @@ window.addEventListener("load", function() {
 });
 
 function renderStore() {
-  EcommerceStore.deployed().then(function(i) {
-    i.getProduct.call(1).then(function(p) {
+  EcommerceStore.deployed().then(function(i) {    
+    i.getProduct.call(6).then(function(p) {
       $("#product-list").append(buildProduct(p));
     });
-    i.getProduct.call(2).then(function(p) {
+    i.getProduct.call(7).then(function(p) {
       $("#product-list").append(buildProduct(p));
     });
   });
